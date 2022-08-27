@@ -1,25 +1,46 @@
-import React from "react";
-
+import React, { useState, useEffect } from "react";
+import { KeyboardEvent } from "react";
+import Popup from "./Components/Popup";
 function App() {
+  const [YoutubeSearch, setYoutubeSearch] = React.useState("");
+  const [GoogleSearch, setGoogleSearch] = React.useState("");
+  const [showPopup, setShowPopup] = React.useState(false);
+  const YinputHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const yt = event.target.value;
+    setYoutubeSearch(yt);
+  };
+
+  const GinputHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const gg = event.target.value;
+    setGoogleSearch(gg);
+  };
+  const keyDownHandler = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.code === "Enter") {
+      setShowPopup(true);
+    }
+  };
   return (
     <>
       <h1 className=" h-screen p-2  bg-indigo-500">
-        <h1 className="text-3xl font-bold text-center underline py-3">
+        <p className="text-3xl font-bold text-center underline py-3">
           Welcome~{" "}
-        </h1>
-        <div className="flex text-center">
-          <button className=" bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center">
-            Search Engine
-          </button>
-          <button className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center">
-            Youtube
-          </button>
-          {}
+        </p>
+        <div className="grid grid-rows-2 grid-flow-col gap-4 v-screen place-items-center">
+          <input
+            onKeyDown={keyDownHandler}
+            onChange={YinputHandler}
+            className="grid-rows-1"
+          />
+          <input
+            onKeyDown={keyDownHandler}
+            onChange={GinputHandler}
+            className="grid-rows-2"
+          />
+          <input onKeyDown={keyDownHandler} className="grid-rows-3" />
         </div>
-        <button className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center">
-          Misc
-        </button>
+        <Popup Trigger={showPopup} setTrigger={setShowPopup}></Popup>
       </h1>
+      {console.log(GoogleSearch)}
     </>
   );
 }
