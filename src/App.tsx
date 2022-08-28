@@ -2,17 +2,11 @@ import React, { useState, useEffect } from "react";
 import { KeyboardEvent } from "react";
 import Popup from "./Components/Popup";
 function App() {
-  const [YoutubeSearch, setYoutubeSearch] = React.useState("");
-  const [GoogleSearch, setGoogleSearch] = React.useState("");
+  const [search, setSearch] = React.useState("");
   const [showPopup, setShowPopup] = React.useState(false);
-  const YinputHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const inputHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     const yt = event.target.value;
-    setYoutubeSearch(yt);
-  };
-
-  const GinputHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const gg = event.target.value;
-    setGoogleSearch(gg);
+    setSearch(yt);
   };
   const keyDownHandler = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.code === "Enter") {
@@ -26,21 +20,11 @@ function App() {
           Welcome~{" "}
         </p>
         <div className="grid grid-rows-2 grid-flow-col gap-4 v-screen place-items-center">
-          <input
-            onKeyDown={keyDownHandler}
-            onChange={YinputHandler}
-            className="grid-rows-1"
-          />
-          <input
-            onKeyDown={keyDownHandler}
-            onChange={GinputHandler}
-            className="grid-rows-2"
-          />
-          <input onKeyDown={keyDownHandler} className="grid-rows-3" />
+          <input onKeyDown={keyDownHandler} onChange={inputHandler} />
         </div>
         <Popup Trigger={showPopup} setTrigger={setShowPopup}></Popup>
       </h1>
-      {console.log(GoogleSearch)}
+      {console.log(search)}
     </>
   );
 }
