@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { KeyboardEvent } from "react";
+import { Colors } from "./Components/colorPicker";
 import Popup from "./Components/Popup";
+import { Youtube } from "./Components/youtube";
 function App() {
   const [search, setSearch] = React.useState("");
   const [showPopup, setShowPopup] = React.useState(false);
+  const [bgColor, setBgColor] = React.useState("");
   const inputHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     const yt = event.target.value;
     setSearch(yt);
@@ -24,10 +27,11 @@ function App() {
       <h1
         className={
           showPopup
-            ? "h-screen p-2  bg-indigo-700"
-            : " h-screen p-2  bg-indigo-500"
+            ? "h-screen p-2 bg-[#000000]"
+            : " h-screen p-2  bg-[#50d71e]"
         }
       >
+        {/* <Colors bgColor={bgColor} setBgColor={setBgColor} /> */}
         <p className="text-3xl font-bold text-center underline py-3">
           Welcome~{" "}
         </p>
@@ -40,7 +44,7 @@ function App() {
           Search={search}
         ></Popup>
       </h1>
-      {console.log(search)}
+      <Youtube />
     </>
   );
 }
