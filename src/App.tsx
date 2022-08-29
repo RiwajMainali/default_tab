@@ -9,20 +9,33 @@ function App() {
     setSearch(yt);
   };
   const keyDownHandler = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (search === "") {
+      alert("Search Query is blank");
+    }
     if (event.code === "Enter") {
       setShowPopup(true);
     }
   };
   return (
     <>
-      <h1 className=" h-screen p-2  bg-indigo-500">
+      <h1
+        className={
+          showPopup
+            ? "h-screen p-2  bg-indigo-700"
+            : " h-screen p-2  bg-indigo-500"
+        }
+      >
         <p className="text-3xl font-bold text-center underline py-3">
           Welcome~{" "}
         </p>
         <div className="grid grid-rows-2 grid-flow-col gap-4 v-screen place-items-center">
           <input onKeyDown={keyDownHandler} onChange={inputHandler} />
         </div>
-        <Popup Trigger={showPopup} setTrigger={setShowPopup}></Popup>
+        <Popup
+          Trigger={showPopup}
+          setTrigger={setShowPopup}
+          Search={search}
+        ></Popup>
       </h1>
       {console.log(search)}
     </>
