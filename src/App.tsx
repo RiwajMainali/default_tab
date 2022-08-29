@@ -9,11 +9,14 @@ function App() {
     setSearch(yt);
   };
   const keyDownHandler = (event: React.KeyboardEvent<HTMLInputElement>) => {
-    if (search === "") {
+    if (search === "" && event.code === "Enter") {
       alert("Search Query is blank");
     }
     if (event.code === "Enter") {
       setShowPopup(true);
+    }
+    if (event.code === "Escape") {
+      setShowPopup(false);
     }
   };
   return (

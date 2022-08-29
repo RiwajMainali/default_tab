@@ -1,15 +1,10 @@
-import { youtube } from "scrape-youtube";
+import React, { useRef, useEffect } from "react";
 interface props {
   Trigger: boolean;
   setTrigger: React.Dispatch<React.SetStateAction<boolean>>;
   Search: string;
 }
 export default function Popup(props: props) {
-  const searchs = () => {
-    if (props.Search.includes("yt:")) {
-    }
-  };
-
   return props.Trigger ? (
     <>
       <div className="inset-y-0 flex h-100vh justify-items-center items-center ">
@@ -20,13 +15,6 @@ export default function Popup(props: props) {
           >
             Close
           </button>
-          
-          {
-            youtube.search(props.Search).then((results) => {
-              console.log(results.videos);
-            });
-            }
-         
         </div>
       </div>
     </>
